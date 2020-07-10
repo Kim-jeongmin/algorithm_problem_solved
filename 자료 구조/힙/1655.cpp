@@ -5,7 +5,7 @@ using namespace std;
 priority_queue<int, vector<int>, less<int>> max_heap;
 priority_queue<int, vector<int>, greater<int>> min_heap;
 
-
+ 
 int main() {
 	ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 	int a; cin >> a;
