@@ -7,7 +7,7 @@ int main(){
     for(int j=1;j<=i;j++){
       if(i == j) {
         dp[i][j] = 1;
-        continue;
+        break;
       }
       if(i == 1) dp[i][j] = j;
       else if(j == 1) dp[i][j] = i;
