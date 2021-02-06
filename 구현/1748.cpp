@@ -14,8 +14,6 @@ int main(){
 
   result += tmp * (cnt+1);
   
-
-  
   cout << result;
 
 }
