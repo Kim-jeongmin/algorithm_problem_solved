@@ -11,7 +11,7 @@ void checker(int a){
 
   int k = pow(2, a-1) - 1;
 
-  if(k >= r && k >= c) checker(a-1);
+  if(k >= r && k >= c) checker(a-1);`
   else if(k >= r && k < c) {
     num += pow(k+1,2);
     c -= k+1;
