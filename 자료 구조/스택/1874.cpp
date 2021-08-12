@@ -1,55 +1,46 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-stack<int> st;
-
-void stackClear(){
-    while(!st.empty()){
-        st.pop();
-    }
-}
-
-
 int main(){
-    bool NO = false;
-    int num; cin >> num;
-    vector<int> v(num);
+  int cur_num = 1;
+  int n; cin >> n;
+  stack<int> s;
+  queue<char> q;
+  s.push(cur_num++);
+  q.push('+');
+
+  for(int i=0;i<n;i++){
+    int k; cin >> k;
+
+    if(s.empty()){
+      s.push(cur_num++);
+      q.push('+');
+    }
     
-    for(int i=0;i<num;i++){
-        cin >> v[i];
+    if(s.top() > k) {
+      cout << "NO";
+      return 0;
     }
-
-    int std = v[0];
-    st.push(v[0]);
-    for(int i=1;i<num;i++){
-        if(std > v[i]){
-            if(st.top() > v[i]){
-                st.push(v[i]);
-            }
-            else {
-                NO = true;
-                break;
-            }
-        }
-        else {
-            std = v[i];
-            stackClear();
-            st.push(v[i]);
-        }
+    while(s.top() != k){
+      s.push(cur_num++);
+      q.push('+');
     }
+  
 
-    if(NO == true) cout << "NO";
-    else {
-        int MAX = 0;
-        for(int i=0;i<num;i++){
-            if(v[i] > MAX) {
-                for(int j=0;j<v[i]-MAX;j++){
-                    cout << "+\n";
-                }
-                MAX = v[i];
-            }
-            cout << "-\n";
-        }
-    }
+    
+    s.pop();
+    q.push('-');
+    
+  }
 
+  while(!s.empty()){
+    s.pop();
+    q.push('-');
+  }
+
+
+  while(!q.empty()){
+    cout << q.front() << '\n';
+    q.pop();
+  }
 }
