@@ -19,10 +19,7 @@ bool isTrue(string str){
 void dfs(int pos, string str){
 	
 	if(pos == N){
-		if(isTrue(str)){
-			result ++;
-		}
-		
+		if(isTrue(str)) result ++;
 		return;
 	}
 	
