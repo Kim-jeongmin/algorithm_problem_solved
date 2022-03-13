@@ -1,33 +1,43 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool cmp_1(pair<int, int> a, pair<int ,int> b) return a.first < b.first;
-bool cmp_2(pair<int, int> a, pair<int, int> b) return a.second > b.second;
+struct cmp{
+    bool operator()(pair<int, int> a, pair<int, int> b){
+        if(a.second != b.second) return a.second < b.second; // 점수가 높은 과제 순서대로
+        else a.first > b.first; // 점수가 같다면 일수가 적은 것부터 앞으로
+    }
+};
+
+priority_queue<pair<int, int>, vector<pair<int, int>>, cmp> pq;
+vector<int> v(1001);
 
 int main(){
     int N; cin >> N;
-    
-    priority_queue<pair<int, int>, vector<pair<int, int>>, cmp_1> pq_day; // 일수가 낮은 순서대로
-    priority_queue<pair<int, int> , vector<pair<int, int>>, cmp_2> pq_score // 점수 높은 순서대로
+    int result = 0;
 
+    // pq에 과제들 담기
     for(int i=0;i<N;i++){
         int d, w; cin >> d >> w;
-        pq_day.emplace(d, w);
-        pq_score.emplace(d, w);
+        pq.emplace(d, w);
     }
 
-    int day = 1;
+    while(!pq.empty()){
+        
+        int num = pq.top().second;
+        int day = pq.top().first;
 
-    int result_1 = 0;
-    int result_2 = 0;
+        for(int i=day;i>=1;i--){
+            if(v[i] == 0) {
+                v[i] = num; break;
+            }
+        }
 
-    for(int i=0;i<N;i++){
-        if(pq_day.top().first >= day) result_1 += pq_day.top().second;
-        if(pq_score.top().first >= day) result_2 += pq_score.top().second;
-
-        day++;
-        pq_day.pop(); pq_score.pop(); 
+        pq.pop();
     }
 
-    cout << max(result_1, result_2);
+    for(int i=1;i<=1000;i++){
+        result += v[i];
+    }
+
+    cout << result;
 }
