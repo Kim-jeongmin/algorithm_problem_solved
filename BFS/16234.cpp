@@ -73,7 +73,8 @@ int main(){
 
     for(int i=0;i<N;i++){
         for(int j=0;j<N;j++){
-            cin >> A[i][j];
+            cin >> A[i][j]; 
+            locked[i][j] = true;
         }
     }
 
@@ -81,7 +82,7 @@ int main(){
     
         for(int i=0;i<N;i++){
             for(int j=0;j<N;j++){
-                if(visited[i][j] == 0 && !locked[i][j]) {
+                if(visited[i][j] == 0) {
                     bfs(i, j); cnt++;
                 }
             }
