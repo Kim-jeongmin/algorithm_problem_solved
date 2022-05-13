@@ -5,18 +5,18 @@ using namespace std;
 const ll INF = (ll)1e18;
 
 int N, M, X;
-vector<pair<ll, ll>> graph[1002];
-ll d[1002][1002];
+vector<pair<ll, ll>> graph[2][1002];
+ll d[2][1002];
 
 ll result = 0;
 
-void dijkstra(int start_node){
+void dijkstra(int num){
 
     priority_queue<pair<ll, ll>> pq;
 
-    d[start_node][start_node] = 0;
+    d[num][X] = 0;
     
-    pq.push({0, start_node});
+    pq.push({0, X});
 
     while(!pq.empty()){
         
@@ -25,14 +25,14 @@ void dijkstra(int start_node){
 
         pq.pop();
 
-        if(d[start_node][now] < dist) continue;
+        if(d[num][now] < dist) continue;
 
-        for(int i=0;i<graph[now].size();i++){
-            int cost = d[start_node][now] + graph[now][i].second;
+        for(int i=0;i<graph[num][now].size();i++){
+            int cost = d[num][now] + graph[num][now][i].second;
 
-            if(cost < d[start_node][graph[now][i].first]) {
-                d[start_node][graph[now][i].first] = cost;
-                pq.push({-cost, graph[now][i].first});
+            if(cost < d[num][graph[num][now][i].first]) {
+                d[num][graph[num][now][i].first] = cost;
+                pq.push({-cost, graph[num][now][i].first});
             }
         }
     }
@@ -48,16 +48,19 @@ int main(){
     for(int i=0;i<M;i++){
         int a, b, c; cin >> a >> b >> c;
 
-        graph[a].push_back({b, c});
+        graph[1][a].push_back({b, c});
+
+        graph[0][b].push_back({a, c});
     }
 
-    fill(&d[0][0], &d[1001][1002], INF);
+    fill(&d[0][0], &d[1][1002], INF);
 
-    for(int i=1;i<=N;i++) dijkstra(i);
+    dijkstra(1);
+
+    dijkstra(0);
 
     for(int i=1;i<=N;i++){
-        result = max(result, d[i][X] + d[X][i]);
+        result = max(result, d[0][i] + d[1][i]);
     }
-
     cout << result;
 }
