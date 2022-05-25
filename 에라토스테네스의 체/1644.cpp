@@ -21,23 +21,15 @@ int main(){
     if(!isPrime[i]) prime[pos++] = i;
   }
 
-  for(int i=0;i<pos;i++){
-    
-    int temp = prime[i];
-    
-    if(temp == N) {
-      result++; break;
-    }
-    for(int j=i+1;j<pos;j++){
-      
-      temp += prime[j];
-
-      if(temp > MAX) break;
-      if(temp == N) {
-        result++;
-        break;
-      }
-    }
+  int lo = 0, hi = 0, temp = prime[0];
+  
+  while(lo <= hi && lo < pos){
+  	
+  	if(temp > N) temp -= prime[lo++];
+  	else if(temp < N) temp += prime[++hi];
+  	else {
+  		result++; temp -= prime[lo++];
+  	}
   }
 
   cout << result;
