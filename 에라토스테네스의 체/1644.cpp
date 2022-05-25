@@ -23,7 +23,7 @@ int main(){
 
   int lo = 0, hi = 0, temp = prime[0];
   
-  while(lo <= hi && lo < pos){
+  while(lo <= hi && hi < pos){
   	
   	if(temp > N) temp -= prime[lo++];
   	else if(temp < N) temp += prime[++hi];
