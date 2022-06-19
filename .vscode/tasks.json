@@ -99,12 +99,10 @@
             "problemMatcher": [
                 "$gcc"
             ],
-            "group": "build",
-//            "group": {
-//               "kind": "build",
-//                "isDefault": true
-//            },
-            
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
             "detail": "디버거에서 생성된 작업입니다."
         },
         {
@@ -124,12 +122,6 @@
                 "$gcc"
             ],
             "group": "build",
-              
-            // "group": {
-            //     "kind": "build",
-            //     "isDefault": true
-            // },
-
             "detail": "컴파일러: C:\\MinGW\\bin\\gcc.exe"
         }
     ]
