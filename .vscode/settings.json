@@ -9,7 +9,8 @@
         "forward_list": "cpp",
         "list": "cpp",
         "vector": "cpp",
-        "functional": "cpp"
+        "functional": "cpp",
+        "iosfwd": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
