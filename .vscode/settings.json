@@ -10,7 +10,8 @@
         "list": "cpp",
         "vector": "cpp",
         "functional": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "tuple": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
