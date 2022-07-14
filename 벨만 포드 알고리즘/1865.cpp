@@ -17,7 +17,7 @@ bool bf(int start){
             int next_node = get<1>(edges[j]);
             int cost = get<2>(edges[j]);
 
-            if(d[next_node] > d[cur_node] + cost){
+            if(d[cur_node] != INF && d[next_node] > d[cur_node] + cost){
                 d[next_node] = d[cur_node] + cost;
 
                 if(i == N-1) return true;
@@ -36,9 +36,9 @@ int main(){
 
     while(TC--){
         
-        for(int i=1;i<=N;i++) d[i] = INF;
-
         cin >> N >> M >> W;
+
+        for(int i=1;i<=N;i++) d[i] = INF;
 
         int S, E, T;
         for(int i=0;i<M;i++){
