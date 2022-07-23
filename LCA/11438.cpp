@@ -64,8 +64,6 @@ int main(){
         tree[b].push_back(a);
     }
 
-    memset(parent,-1,sizeof(parent));
-    fill(depth,depth+N, -1);
 
     set_tree(1, 0);
     dp_parent(N);
