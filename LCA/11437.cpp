@@ -7,6 +7,21 @@ vector<int> tree[MAX+1];
 int parent[MAX+1], depth[MAX+1];
 bool visited[MAX+1];
 
+void set_tree(int cur, int d){
+    visited[cur] = true;
+    depth[cur] = d;
+
+    for (int i=0;i<tree[cur].size();i++){
+        int next = tree[cur][i];
+
+        if(!visited[next]){
+            parent[next] = cur;
+            set_tree(next, d+1);
+        } 
+    }
+}
+
+
 int LCA(int a, int b){
 
     if(depth[a] > depth[b]) swap(a, b);
@@ -34,27 +49,7 @@ int main(){
     }
 
     
-    queue<int> q;
-    q.push(1);
-    visited[1] = true;
-
-    while(!q.empty()){
-
-        int now = q.front();
-        q.pop();
-
-        for(int i=0;i<tree[now].size();i++){
-
-            int next = tree[now][i];
-
-            if(!visited[next]){
-                visited[next] = true;
-                depth[next] = depth[now] + 1;
-                parent[next] = now;
-                q.push(next);
-            }
-        }
-    }
+    set_tree(1, 0);
 
 
     int M; cin >> M;
