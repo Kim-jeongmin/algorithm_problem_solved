@@ -12,7 +12,8 @@
         "functional": "cpp",
         "iosfwd": "cpp",
         "tuple": "cpp",
-        "*.tcc": "cpp"
+        "*.tcc": "cpp",
+        "valarray": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
