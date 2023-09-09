@@ -1,12 +1,13 @@
 #include <bits/stdc++.h>
+typedef long long LL;
 using namespace std;
 
-int T[301];
+LL T[302];
 
 int main() {
 
-	for (int i = 1; i < 301; i++) {
-		T[i] = i + T[i-1];
+	for (LL i = 1; i < 302; i++) {
+		T[i] = i + T[i - 1];
 	}
 
 	int testCase; cin >> testCase;
@@ -14,13 +15,15 @@ int main() {
 	while (testCase--) {
 		int n; cin >> n;
 
-		int result = 0;
 
-		for (int k = 1; k <= n; i++) {
+
+		LL result = 0;
+
+		for (LL k = 1; k <= n; k++) {
 			result += k * T[k + 1];
 		}
 
-		cout << result + 1 << '\n';
-		
+		cout << result << '\n';
+
 	}
 }
